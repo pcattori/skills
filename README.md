@@ -8,7 +8,8 @@
 | [`pr-tend`](pr-tend/)                     | Addresses review feedback and monitors review and CI                |
 | [`pr-comments`](pr-comments/)             | Sets attribution and content for PR comments posted on your behalf  |
 | [`council`](council/)                     | Gets independent review from delegates on several model providers   |
-| [`spec`](spec/)                           | Defines domain language and behavioral contracts, and their tests   |
+| [`hone`](hone/)                           | Refines a design together and records settled spec decisions       |
+| [`spec`](spec/)                           | Defines domain language and behavioral contracts                   |
 | [`write-for-humans`](write-for-humans/)   | Writes Markdown that people can scan                                |
 | [`write-skill`](write-skill/)             | Authors and organizes agent skills                                  |
 | [`teach`](teach/)                         | Teaches a topic interactively, from first principles                |

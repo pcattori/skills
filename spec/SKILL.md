@@ -1,12 +1,12 @@
 ---
 name: spec
-description: Define domain language and behavioral contracts. Use when refining terminology, writing a spec, or authoring, reviewing, or organizing tests that express it.
+description: Use when refining domain terminology or writing or reviewing a behavioral specification.
 ---
 
 # Spec
 
-Refine the domain's language and behavior together, recording terms, capabilities,
-rules, and examples in `SPEC.md` and expressing the contract in tests.
+Refine the domain's language and behavior together. Record terms in
+`spec/glossary.md` and capabilities, rules, and examples in `spec/behavior.md`.
 
 - **Term:** a domain concept with a canonical name and precise meaning.
 - **Capability:** a coherent thing a caller can accomplish.
@@ -20,8 +20,8 @@ scenario may expose a missing concept; a sharper definition may change a rule.
 
 - **Challenge against defined terms**
 
-  When the user uses a term that conflicts with the existing Terms section, call
-  it out immediately: "Your spec defines 'cancellation' as X, but you seem to mean
+  When the user uses a term that conflicts with the glossary, call it out
+  immediately: "Your glossary defines 'cancellation' as X, but you seem to mean
   Y. Which is it?"
 
 - **Sharpen fuzzy language**
@@ -47,53 +47,60 @@ scenario may expose a missing concept; a sharper definition may change a rule.
 
 - **Update the spec inline**
 
-  When a term is resolved, update the Terms section right there. Don't batch these
-  up: capture them as they happen. Update rules and examples as they settle too.
-  Keep unanswered questions explicit rather than inventing guarantees.
+  Propose unfamiliar terms in chat. If the user hasn't used a term, add it to the
+  glossary only after they explicitly approve both the name and its meaning.
+  Finding a term in code or docs isn't approval. Don't prefill the glossary from
+  a repo scan.
+
+  Record settled terms, capabilities, rules, and examples as they settle. In a
+  conversation, write the settled changes after each round rather than waiting
+  until the end. Keep proposals and open questions in chat, not in the spec.
 
 ## Write the spec
 
-Use `SPEC.md` at the package root in a multi-package monorepo, or the repository
-root otherwise. Create the file when there is something resolved to record.
+Use `spec/` at the package root in a multi-package monorepo, or the repository
+root otherwise. Read any existing spec before proposing changes. Create each file only when it has something settled to
+record.
 
-- **Terms:** define context-specific concepts in one or two sentences each,
-  stating what they are. Choose one canonical name and list competing names under
-  `_Avoid_`. Keep definitions free of implementation details; general programming
-  concepts belong only if they have a distinct meaning in this domain.
-- **Capabilities:** name caller goals and observable outcomes, not implementation
-  components. Order them so understanding accumulates: simplest useful behavior
-  first, then richer cases and interactions as prerequisites allow.
-- **Rules and examples:** give each independent guarantee its own bold bullet,
-  with supporting examples indented beneath it. Start with a simple example, then
-  boundaries. Keep rejections beside the rules they enforce.
+### Glossary
+
+In `spec/glossary.md`, define context-specific concepts in one or two sentences
+each, stating what they are. Choose one canonical name and list competing names
+under `_Avoid_`. Keep definitions free of implementation details; general
+programming concepts belong only if they have a distinct meaning in this domain.
 
 ```markdown
-# Ordering
-
-## Terms
+# Glossary
 
 **Order**: A customer's request to purchase one or more order lines.
 _Avoid_: Purchase, transaction
 
 **Order line**: A product and quantity requested within an order.
+```
 
-## Capabilities
+### Behavior
 
-### Place an order
+In `spec/behavior.md`, give each capability a heading named for a caller goal,
+not an implementation component. Order capabilities from the simplest useful
+behavior to richer cases and interactions as prerequisites allow.
 
-- **An order must contain at least one line.**
+Give each independent rule its own bold bullet, with supporting examples
+indented beneath it. Start with a simple example, then boundaries. Keep
+rejections beside the rules they enforce.
+
+```markdown
+# Behavior
+
+## Place an order
+
+- **Placing an order requires at least one order line.**
 
   Placing an order with no lines fails with an empty-order error.
 ```
 
-## Express the contract in tests
+## Contract tests during implementation
 
-- **Mirror the structure:** map test groups to capabilities, test names to rules,
-  and concrete cases to examples. Check that the relevant spec rules and examples
-  are represented; surface gaps or contradictions.
-- **Keep examples independent:** each sets up its own state. Keep decisive inputs
-  visible; helpers hide incidental mechanics. One behavior can need several
-  assertions; split tests that join unrelated guarantees.
-- **Assert the caller's contract:** include failure information callers rely on,
-  such as an error tag and reason. Test dependency mechanics only where they are
-  part of the promised behavior.
+When implementing a capability, give it one corresponding contract test named
+for that capability in `spec/behavior.md`. The test can have multiple cases to
+cover the capability's rules and examples. Test the behavior callers can
+observe, not how the implementation delivers it.
