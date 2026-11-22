@@ -11,5 +11,6 @@ Preferred libraries for HTML documents, visualizations, and interactive explaine
 - **Diagrams:** [Mermaid](https://mermaid.js.org/) rendered via [Pele](https://github.com/obsidianmd/pele).
 - **State machines, statecharts, and actors:** use the [xstate skill](../xstate/SKILL.md).
 - **Data visualization:** [D3](https://d3js.org/).
+- **Matplotlib-style charts:** [mpljs](https://github.com/ivarvong/mpl) renders SVG and PNG in JavaScript.
 - **Declarative interactions:** [Declarative Dragging](https://declarative-dragging.github.io/).
 - **Animations:** [Motion](https://motion.dev/).
