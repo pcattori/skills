@@ -1,9 +1,9 @@
 ---
-name: hone
-description: Use when the user wants to hone a plan, design, or idea together through pointed questions.
+name: align
+description: Use when the user wants to align on a plan, design, or idea through pointed questions.
 ---
 
-# Hone
+# Align
 
 Interview the user until you reach a shared understanding. Read
 [spec](../spec/SKILL.md) and the project's existing spec first. Use the glossary
@@ -48,5 +48,5 @@ distinctions worth naming.
 
 **When the frontier is empty and no spec changes are pending**, recap how the
 agreed decisions fit together and ask whether anything is off. Don't ask the
-user to reapprove recorded changes. Recording approved changes is part of
-honing; implementing the design or changing tests requires a separate request.
+user to reapprove recorded changes. Record approved changes as part of the discussion. Implementing the design or
+changing tests requires a separate request.
