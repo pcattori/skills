@@ -45,37 +45,52 @@ scenario may expose a missing concept; a sharper definition may change a rule.
   cancellation is possible. Which is right?" Resolve the intended contract with
   the user; current behavior is evidence, not automatically the authority.
 
-- **Update the spec inline**
+- **Propose, then record**
 
-  Propose unfamiliar terms in chat. If the user hasn't used a term, add it to the
-  glossary only after they explicitly approve both the name and its meaning.
-  Finding a term in code or docs isn't approval. Don't prefill the glossary from
-  a repo scan.
+  Don't infer approval from usage. Agree on the name and meaning before adding
+  or revising a glossary entry. Don't prefill the glossary from a repo scan.
 
-  Record settled terms, capabilities, rules, and examples as they settle. In a
-  conversation, write the settled changes after each round rather than waiting
-  until the end. Keep proposals and open questions in chat, not in the spec.
+  In a conversation, show the exact proposed changes before writing them.
+  The user can approve a batch. Write only what they approve, without adding
+  defaults, edge cases, or guarantees. Keep proposals and open questions in chat.
+
+## Review proposed changes
+
+Prefer inline HTML. If the renderer isn't already loaded, search the harness's
+tools for it (`html_render` in T3 Code) before falling back. If available, fill in
+[the HTML template](references/review.html) and call the renderer. Otherwise,
+follow the [terminal example](references/review-terminal.md). Omit empty sections.
+
+Label each change. Use the actual glossary term or capability heading when
+changing one; use a short review-only label for individual behavior rules.
+Don't write those review labels into the spec.
+
+Add **Why** only to an existing behavior edit that needs a sentence of context.
+It stays in the review; put requirements in the proposed rule or example.
 
 ## Write the spec
 
 Use `spec/` at the package root in a multi-package monorepo, or the repository
-root otherwise. Read any existing spec before proposing changes. Create each file only when it has something settled to
-record.
+root otherwise. Read any existing spec before proposing changes. Create each
+file only when there's an approved change to record.
 
 ### Glossary
 
-In `spec/glossary.md`, define context-specific concepts in one or two sentences
-each, stating what they are. Choose one canonical name and list competing names
-under `_Avoid_`. Keep definitions free of implementation details; general
-programming concepts belong only if they have a distinct meaning in this domain.
+In `spec/glossary.md`, define context-specific concepts in one or two sentences.
+Choose one canonical name and list competing names under `_Avoid_`.
+
+Entries should capture the agreed **domain schema**: the attributes and
+relationships that define a concept, including which are required or optional
+when that's been decided. Use domain terms, not database or language types.
+Put rules about what users can do and how the app responds in Behavior.
 
 ```markdown
 # Glossary
 
-**Order**: A customer's request to purchase one or more order lines.
-_Avoid_: Purchase, transaction
-
-**Order line**: A product and quantity requested within an order.
+**Event**: A gift-giving occasion with a required name and date, an optional
+description, and a guest list that distinguishes invited guests from those
+who've accepted.
+_Avoid_: Gathering
 ```
 
 ### Behavior

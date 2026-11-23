@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Spec review</title>
+<style>
+  body { margin: 0; line-height: 1.55; }
+  h2 { font-size: 1rem; margin: 12px 0 4px; }
+  ol { margin: 0; padding-inline-start: 1.6em; }
+  li { padding-inline-start: .2em; margin: 5px 0 10px; }
+  ins, del { padding: .07em .25em; border-radius: .24em; text-decoration: none; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  ins { background: color-mix(in srgb, var(--success) 19%, transparent); border-bottom: 2px solid var(--success); }
+  del { background: color-mix(in srgb, var(--destructive) 19%, transparent); border-bottom: 2px dashed var(--destructive); }
+  .mark { font-weight: 700; margin-inline-end: .28em; }
+  .why { font-size: .9em; margin: .65em 0 0; padding-inline-start: .65em; border-inline-start: 2px solid var(--border); color: var(--muted-foreground, var(--foreground)); }
+</style>
+<body>
+<!-- Replace the example items with HTML-escaped spec text. Omit empty sections
+     and set the second list's start to one past the last number above it.
+     For a whole addition or deletion, highlight only the bold term or rule
+     label. Keep the full definition or rule text plain. For edits, put the
+     bold label before the inline diff and highlight only changed phrases. -->
+<h2>Glossary</h2>
+<ol>
+  <li><ins><span class="mark" aria-hidden="true">+</span><strong>Claim</strong></ins>: A reservation that signals a giver intends to give a wishlist item.</li>
+</ol>
+
+<h2>Behavior</h2>
+<ol start="2">
+  <li><del><span class="mark" aria-hidden="true">−</span><strong>Restrict who can leave</strong></del>: Only the event organizer can leave an event.</li>
+  <li>
+    <strong>Claim visibility</strong>: Recipients can see who claimed an item for an event
+    <del><span class="mark" aria-hidden="true">−</span>as soon as it’s claimed</del>
+    <ins><span class="mark" aria-hidden="true">+</span>after the event ends</ins>.
+    <p class="why"><strong>Why:</strong> This keeps the gift a surprise and still helps recipients write thank-you notes.</p>
+  </li>
+</ol>
+</body>
+</html>
