@@ -38,10 +38,10 @@ with the remaining members. Retry or substitute only at the user's request.
 ## Review
 
 1. **Brief the delegates.** Give each delegate the request and relevant context.
-   Keep their work read-only. For a code review, ask for a score out of 10, but
-   leave scores out of reports.
-2. **Assess results as they arrive.** Check findings against the code at once
-   and [sort each one](#sort-findings) while the other delegates run. Wait to
+   Keep their work read-only. For a code review, ask for a score out of 10.
+2. **Assess results as they arrive.** Check findings against the code at once,
+   [sort each one](#sort-findings), and post a
+   [member update](#member-update) while the other delegates run. Wait to
    edit files until no delegate is reviewing the same checkout. If the user
    marks a delegate as non-blocking, do not wait for it; treat a late result as
    feedback.
@@ -67,27 +67,64 @@ with the remaining members. Retry or substitute only at the user's request.
 
 ### Ask the user
 
-Show the [report](#report), then use the harness's question tool to ask about
-each **Needs decision** finding by number, recommendation first. Without a
-question tool, end your turn with the report and the questions. Do not
-implement these findings until the user decides. The user may also respond to
-**Fixed** or **Declined** findings; address that feedback too. Move each
-finding the user weighs in on to **Fixed** or **Declined**, marked as the
-user's call.
+Use the harness's question tool to ask about each **Needs decision** finding,
+restating it with its trade-off, recommendation first. Without a question tool,
+end your turn with the questions. Do not implement these findings until the
+user decides. The user may also respond to **Fix** or **Declined** findings in
+a member update; address that feedback too. Move each finding the user weighs
+in on to **Fixed** or **Declined**, marked as the user's call.
 
 ## Report
 
-Number findings with one counter across the lists: **Fixed** in commit order,
-then **Needs decision**, then **Declined**. Refer to findings by their number in
-the latest report, or restate them. Never cite a delegate's own numbering; the
-user never saw it.
+Post a [member update](#member-update) as each member's result arrives, and the
+[final report](#final-report) when council ends. Post no other reports between
+rounds. Mark verdicts with 🔧 for **Fix**, ❓ for **Needs decision**, and ✖️
+for **Declined**.
 
-Follow this format. Explain each finding concretely: the failing scenario and
-what changed, the trade-off and your recommendation, or the reason for
-declining.
+### Member update
+
+Follow this format:
 
 ```markdown
-**Fixed**
+**GPT Sol (6/10):** The routing core is solid, but error paths and HEAD requests misbehave.
+
+| Verdict | Finding | Note |
+|---|---|---|
+| 🔧 | Response options replace status and body | `{ status: 200 }` on an error path returns 200 |
+| 🔧 | HEAD hangs on cancel | Cancelling the client never ends the request |
+| ❓ | `policy_restrictions` alias | Docs accept it, schema doesn't |
+| ✖️ | Staging contract test | Needs a deployed env |
+
+Still running: Opus, Gemini Neon, AI reviewer.
+```
+
+- **Header:** the member, its score, and a one-sentence summary. For a member
+  that gives a verdict instead of a score, show the verdict, like
+  `(approved)`. Leave out the parentheses when there is neither.
+- **Rows:** list only findings that no earlier member raised this round, and
+  add `Agrees with <members> on <n> findings.` for the rest. Leave rows
+  unnumbered; numbers come from the final report.
+
+### Final report
+
+First resolve every **Needs decision** finding and all user feedback, then put
+the final report in the final reply. Number findings with one counter across
+the sections: **Fixed** in commit order, then **Declined**. Afterward, refer to
+findings by these numbers or restate them. Never cite a delegate's own
+numbering; the user never saw it.
+
+Follow this format. Explain each finding concretely: the failing scenario and
+what changed, or the reason for declining. Mark findings the user decided with
+`· you` after the member names.
+
+```markdown
+## Council report
+
+**3 rounds:** Opus 9/10 · GPT Sol 9/10 · Gemini Neon 8/10 · AI reviewer approved
+
+### 🔧 Fixed (2)
+
+---
 
 1. **Response options could replace the status and body.** - Opus, Sol
 
@@ -96,22 +133,22 @@ declining.
    Passing `{ status: 200 }` on an error path returned 200 with an error body.
    Those options are now ignored.
 
-**Needs decision**
+2. **Accept `policy_restrictions` as an alias for `policy`.** - Sol · you
 
-2. **Accept `policy_restrictions` as an alias for `policy`?** - Sol
+   `council: accept policy_restrictions as an alias for policy` (`c7d02f1`)
 
-   The upstream docs accept either spelling, but the upstream schema lists only
-   `policy`. Accepting it changes the public request schema. Recommended:
-   accept it, and return a 400 when the two values conflict.
+   The upstream docs accept either spelling. A request that sets both to
+   different values now gets a 400.
 
-**Declined**
+### ✖️ Declined (1)
+
+---
 
 3. **Pagination accepts fractional values.** - Opus
 
    Upstream types these fields as `number`, and the stub mirrors upstream.
 ```
 
-Omit empty lists. Note any member that was unavailable or failed.
-
-**Final report:** first resolve every **Needs decision** finding and all user
-feedback on the report, then put the report in the final reply.
+Omit empty sections. Note any member that was unavailable or failed. If council
+stopped at the round limit, add a `### ❓ Unresolved` section after **Declined**
+for the remaining disagreements.
