@@ -42,6 +42,9 @@ continue with the remaining reviewers. Do not retry or substitute reviewers.
    - **No approvals:** tell the reviewer never to request approval or extra
      permissions. If a command is refused or needs approval, it finds a
      workaround, or skips the command and marks the claim unverified.
+   - **Scratch in `/tmp`:** tell the reviewer to do any scratch work under
+     `/tmp` and not to clean it up. Some harnesses ask for approval on any
+     `rm -f` or `rm -rf`, even in full access, and the OS clears `/tmp`.
 2. **Assess results as they arrive.** Check findings against the code at once,
    [sort each one](#sort-findings), and post a
    [reviewer update](#reviewer-update) while the other reviewers run. Wait to
