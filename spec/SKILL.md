@@ -122,8 +122,7 @@ rejections beside the rules they enforce.
   Placing an order with no lines fails with an empty-order error.
 ```
 
-## Implementing spec tests
+## Implementation
 
-When implementing a capability, read [Spec tests](references/testing.md)
-for how to turn capabilities, rules, and examples into tests of caller-visible
-behavior.
+When implementing against a spec, read [Implement the spec](references/implement.md)
+for how the glossary maps to domain types and schemas and behavior maps to tests.

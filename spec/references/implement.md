@@ -1,14 +1,49 @@
-# Spec tests
+# Implement the spec
+
+Use the glossary to shape the domain model and the behavior spec to test what
+callers can observe.
+
+## Glossary informs types and schemas
+
+- **One canonical model per structured term:** Give each glossary term that
+  defines fields or relationships a corresponding domain type or schema named
+  for the term. Match the agreed fields, relationships, and required or optional
+  status.
+
+- **Keep the mapping at the domain level:** Storage records, API payloads, and
+  UI drafts may have different shapes. Map them to or from the canonical model
+  at their boundaries.
+
+### Example: Event
+
+Given this entry in `spec/glossary.md`:
+
+```markdown
+**Event**: A scheduled gathering with a required title and an optional description.
+```
+
+The corresponding TypeScript domain type:
+
+```ts
+type Event = {
+  title: string;
+  description?: string;
+};
+```
+
+## Behavior informs tests
 
 Spec tests verify caller-visible behavior and mirror the capabilities, rules,
 and examples in `spec/behavior.md`.
 
 - **Capability → suite:** use one suite named after the capability heading.
+
 - **Rule → test:** give each rule its own test inside that suite, named for the rule.
+
 - **Examples → cases:** when a rule has multiple examples, use a parameterized
   test with one case per example.
 
-## Example
+### Example
 
 Given this excerpt from `spec/behavior.md`:
 

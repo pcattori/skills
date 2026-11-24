@@ -1,6 +1,6 @@
 # Testing
 
-For modeling a behavioral spec in test code, see the [spec tests reference](../../spec/references/spec-tests.md).
+For modeling a behavioral spec in test code, see the [Behavior informs tests](../../spec/references/implement.md#behavior-informs-tests).
 
 ## Source-code fixtures
 
