@@ -38,13 +38,20 @@ with the remaining members. Retry or substitute only at the user's request.
 ## Review
 
 1. **Brief the delegates.** Give each delegate the request and relevant context.
-   Keep their work read-only. For a code review, ask for a score out of 10.
+   For a code review, ask for a score out of 10. In every brief:
+   - **Read-only:** tell the delegate not to change the checkout.
+   - **No approvals:** tell the delegate never to request approval or extra
+     permissions. If a command is refused or needs approval, it finds a
+     workaround, or skips the command and marks the claim unverified.
 2. **Assess results as they arrive.** Check findings against the code at once,
    [sort each one](#sort-findings), and post a
    [member update](#member-update) while the other delegates run. Wait to
    edit files until no delegate is reviewing the same checkout. If the user
    marks a delegate as non-blocking, do not wait for it; treat a late result as
    feedback.
+   - **Stalled delegate:** if a delegate stops on an approval or a question,
+     tell the user at once and offer to answer it, cancel the delegate, or mark
+     it non-blocking. Do not approve on the user's behalf.
 3. **Fix, then ask.** Commit each fix separately as `council: <summary>`. Do
    not amend, fixup, squash, or reorder existing commits unless the user asks.
    If any finding needs the user's decision, [ask](#ask-the-user) before the
@@ -77,9 +84,9 @@ in on to **Fixed** or **Declined**, marked as the user's call.
 ## Report
 
 Post a [member update](#member-update) as each member's result arrives, and the
-[final report](#final-report) when council ends. Post no other reports between
-rounds. Mark verdicts with 🔧 for **Fix**, ❓ for **Needs decision**, and ✖️
-for **Declined**.
+[final report](#final-report) when council ends. Between rounds, post no other
+reports except a [stalled delegate](#review) notice. Mark verdicts with 🔧 for
+**Fix**, ❓ for **Needs decision**, and ✖️ for **Declined**.
 
 ### Member update
 
