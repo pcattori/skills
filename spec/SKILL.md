@@ -1,34 +1,37 @@
 ---
 name: spec
-description: Use when refining domain terminology or writing or reviewing a behavioral specification.
+description: Use when refining domain terminology, writing or reviewing a behavioral specification, or changing terminology or behavior while prototyping or implementing against an existing spec.
 ---
 
 # Spec
 
-Refine the domain's language and behavior together. Record terms in
-`spec/glossary.md` and capabilities, rules, and examples in `spec/behavior.md`.
+Actively refine the domain's language and behavior as you design, prototype, and
+implement. Record terms in `spec/glossary.md` and capabilities, rules, and
+examples in `spec/behavior.md`.
 
 - **Term:** a domain concept with a canonical name and precise meaning.
 - **Capability:** a coherent thing a caller can accomplish.
 - **Rule:** a guarantee or constraint within a capability.
 - **Example:** concrete preconditions, an action, and its expected outcome.
 
+## Keep the spec current
+
+Keep using this skill after `align` ends. Before acting on prototype or
+implementation feedback, check the relevant glossary entries and behavior rules.
+Surface proposed spec changes in the same turn: is “Surprises” a canonical
+rename or just a screen label? Call out behavior changes separately. Leave
+styling, copy, and prototype shortcuts out unless they change the contract.
+
+You can try an unsettled change in a prototype, but flag the mismatch and
+resolve it before implementing the affected behavior for real.
+
 ## Refine the model
 
-Treat terminology and behavior as a feedback loop, not separate phases. A concrete
-scenario may expose a missing concept; a sharper definition may change a rule.
+- **Clarify terminology**
 
-- **Challenge against defined terms**
-
-  When the user uses a term that conflicts with the glossary, call it out
-  immediately: "Your glossary defines 'cancellation' as X, but you seem to mean
-  Y. Which is it?"
-
-- **Sharpen fuzzy language**
-
-  When the user uses vague or overloaded terms, propose a precise canonical term:
-  "You're saying 'account': do you mean the Customer or the User? Those are
-  different things."
+  Flag conflicts with the glossary immediately and propose precise terms when
+  language is vague or overloaded. For example: “The glossary distinguishes
+  Customer from User. Which do you mean by ‘account’?”
 
 - **Discuss concrete scenarios**
 
@@ -50,9 +53,15 @@ scenario may expose a missing concept; a sharper definition may change a rule.
   Don't infer approval from usage. Agree on the name and meaning before adding
   or revising a glossary entry. Don't prefill the glossary from a repo scan.
 
-  In a conversation, show the exact proposed changes before writing them.
-  The user can approve a batch. Write only what they approve, without adding
-  defaults, edge cases, or guarantees. Keep proposals and open questions in chat.
+  Show the exact proposed changes for approval, individually or as a batch.
+  Record only what the user approves, and do so promptly. Don't add defaults,
+  edge cases, or guarantees. Keep proposals and open questions in chat.
+
+- **Apply approved renames throughout the spec**
+
+  An approved canonical rename applies throughout the spec. Search for the old
+  term and update every reference to that concept except intentional `_Avoid_`
+  entries; ask separately only if meaning or behavior changes.
 
 ## Review proposed changes
 
