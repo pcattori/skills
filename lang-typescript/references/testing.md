@@ -1,6 +1,6 @@
 # Testing
 
-For behavioral coverage and test organization, read [spec](../../spec/SKILL.md).
+For modeling a behavioral spec in test code, see the [spec tests reference](../../spec/references/spec-tests.md).
 
 ## Source-code fixtures
 

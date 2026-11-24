@@ -122,9 +122,8 @@ rejections beside the rules they enforce.
   Placing an order with no lines fails with an empty-order error.
 ```
 
-## Contract tests during implementation
+## Implementing spec tests
 
-When implementing a capability, give it one corresponding contract test named
-for that capability in `spec/behavior.md`. The test can have multiple cases to
-cover the capability's rules and examples. Test the behavior callers can
-observe, not how the implementation delivers it.
+When implementing a capability, read [Spec tests](references/testing.md)
+for how to turn capabilities, rules, and examples into tests of caller-visible
+behavior.
