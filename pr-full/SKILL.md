@@ -55,9 +55,9 @@ start, including on an existing PR you reuse.
    create a branch first. Preserve unrelated changes and other contributors' work.
 2. **Prove it.** Get proof for every change you made, following
    [pr-proof](../pr-proof/SKILL.md).
-3. **Get feedback.** Use [council](../council/SKILL.md) to review changes and follow
-   its fix-and-recheck loop. Resolve every finding, including asking the user
-   about those that need a decision, before creating the PR.
+3. **Get feedback.** Use [council](../council/SKILL.md) to review changes, and
+   [apply the changes the user approves](../council/SKILL.md#apply-approved-changes)
+   before creating the PR.
 4. **Create the PR.** Rebase onto the latest target branch first. Use
    [pr-create](../pr-create/SKILL.md) to create or update the PR. Report proof in
    the description, following
@@ -65,17 +65,16 @@ start, including on an existing PR you reuse.
 5. **Tend the PR.** Use [pr-tend](../pr-tend/SKILL.md).
 6. **Hand off.** Stop with one of
    [pr-tend's outcomes](../pr-tend/SKILL.md#outcomes) and follow its
-   report, adding the [council report](../council/SKILL.md#report).
+   report, listing which of council's changes you applied.
 
 **Stay active:** Own the work from step 1 through handoff. While checks or bots
 are pending, wait as [pr-tend](../pr-tend/SKILL.md#waiting) describes.
 
 ## Asking the user
 
-Ask only in the cases [pr-tend lists](../pr-tend/SKILL.md#asking-the-user)
-and about council findings that
-[need a decision](../council/SKILL.md#sort-findings), following pr-tend's rules
-for how to ask.
+Ask only in the cases [pr-tend lists](../pr-tend/SKILL.md#asking-the-user),
+following its rules for how to ask. Also stop for the user's reply to council's
+[final report](../council/references/editor.md#final-report).
 
 **Decide the rest:** Decide everything else yourself with sensible defaults, and
 list consequential decisions in the report.
