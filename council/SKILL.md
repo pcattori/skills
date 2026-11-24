@@ -22,8 +22,11 @@ By default, use these flagship models at high reasoning effort:
 - **OpenAI:** GPT Sol.
 - **Google:** Gemini Neon.
 
-Use different members only when the user explicitly requests them. Start the
-members in parallel:
+Also include any local reviewer that a skill or instruction identifies as a
+review gate for this repo. Run it as that skill or instruction directs.
+
+Use different model members only when the user explicitly requests them. Start
+the members in parallel:
 
 - **In T3 Code:** resolve current model IDs and supported reasoning settings
   through `orchestrator_capabilities`, then start them with `delegate_task`.
