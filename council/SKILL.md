@@ -20,6 +20,7 @@ By default, use these flagship models at high reasoning effort:
 
 - **Anthropic:** Claude Opus.
 - **OpenAI:** GPT Sol.
+- **Google:** Gemini Neon.
 
 Use different members only when the user explicitly requests them.
 
@@ -64,6 +65,7 @@ Rounds: 2
 | --- | --- | --- |
 | Claude Opus | 7/10 | 9/10 |
 | GPT Sol | 8/10 | 10/10 |
+| Gemini Neon | 6/10 | 9/10 |
 ```
 
 If a delegate gives no score, write `no score`. Do not invent one.
