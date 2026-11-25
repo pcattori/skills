@@ -74,7 +74,7 @@ are pending, wait as [pr-tend](../pr-tend/SKILL.md#waiting) describes.
 
 Ask only in the cases [pr-tend lists](../pr-tend/SKILL.md#asking-the-user),
 following its rules for how to ask. Also stop for the user's reply to consult's
-[reports](../consult/SKILL.md#report).
+[report](../consult/SKILL.md#report).
 
 **Decide the rest:** Decide everything else yourself with sensible defaults, and
 list consequential decisions in the report.
