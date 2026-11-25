@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--
+  Orient step page.
+  - Mark a glossed term: <span class="term" tabindex="0" data-gloss="ID">term</span>
+  - Write its gloss in <template id="gloss-ID">: one <p>, then one docs <a>.
+  Colors use the host's theme variables when it provides them, with fallbacks.
+-->
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; line-height: 1.6; font-size: 15px; }
+  h2 { font-size: 17px; margin: 20px 0 8px; }
+  h2:first-child { margin-top: 4px; }
+  p, li { margin: 6px 0; }
+  ul, ol { padding-left: 22px; margin: 6px 0; }
+  code {
+    font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.9em;
+    background: var(--code-background, rgb(127 127 127 / 0.15));
+    padding: 1px 4px; border-radius: 4px;
+  }
+  .term { border-bottom: 1px dotted var(--muted-foreground, GrayText); cursor: help; outline: none; }
+  .term:hover, .term:focus-visible, .term.open {
+    border-bottom-color: var(--primary, LinkText); color: var(--primary, LinkText);
+  }
+  #tip {
+    position: fixed; z-index: 10; width: 320px; max-width: calc(100vw - 24px);
+    padding: 12px 14px; border-radius: var(--radius, 8px);
+    background: var(--popover, Canvas); color: var(--popover-foreground, CanvasText);
+    border: 1px solid var(--border, GrayText); box-shadow: 0 6px 24px rgb(0 0 0 / 0.25);
+    font-size: 13.5px; line-height: 1.5; display: none;
+  }
+  #tip.show { display: block; }
+  #tip p { margin: 0 0 8px; }
+  #tip a { color: var(--primary, LinkText); font-size: 12.5px; }
+  .hint { color: var(--muted-foreground, GrayText); font-size: 13px; margin-top: 18px; }
+</style>
+</head>
+<body>
+
+<h2>Step 1: The problem</h2>
+<p>Every merge released each <span class="term" tabindex="0" data-gloss="example">example term</span> all at once.</p>
+
+<p class="hint">Hover, tap, or tab to an underlined term for its role here.</p>
+
+<template id="gloss-example">
+  <p>What this term does in this context, which of its features the context uses, and what changes about it.</p>
+  <a href="https://example.com/docs#feature" target="_blank">Example docs →</a>
+</template>
+
+<div id="tip" role="tooltip"></div>
+
+<script>
+  const tip = document.getElementById("tip");
+  let active = null, hideTimer = null;
+
+  function show(term) {
+    clearTimeout(hideTimer);
+    if (active) active.classList.remove("open");
+    active = term;
+    term.classList.add("open");
+    tip.innerHTML = document.getElementById("gloss-" + term.dataset.gloss).innerHTML;
+    tip.classList.add("show");
+    const r = term.getBoundingClientRect();
+    const w = tip.offsetWidth, h = tip.offsetHeight, gap = 6;
+    const left = Math.max(8, Math.min(r.left, window.innerWidth - w - 8));
+    const below = r.bottom + gap + h <= window.innerHeight;
+    tip.style.left = left + "px";
+    tip.style.top = (below ? r.bottom + gap : Math.max(8, r.top - gap - h)) + "px";
+  }
+  function hide() {
+    hideTimer = setTimeout(() => {
+      tip.classList.remove("show");
+      if (active) active.classList.remove("open");
+      active = null;
+    }, 150);
+  }
+
+  for (const term of document.querySelectorAll(".term")) {
+    term.addEventListener("mouseenter", () => show(term));
+    term.addEventListener("mouseleave", hide);
+    term.addEventListener("focus", () => show(term));
+    term.addEventListener("blur", (e) => { if (!tip.contains(e.relatedTarget)) hide(); });
+    term.addEventListener("click", () => show(term));
+  }
+  tip.addEventListener("mouseenter", () => clearTimeout(hideTimer));
+  tip.addEventListener("mouseleave", hide);
+  tip.addEventListener("focusout", (e) => {
+    if (!tip.contains(e.relatedTarget) && e.relatedTarget !== active) hide();
+  });
+  window.addEventListener("scroll", () => active && show(active), { passive: true });
+</script>
+</body>
+</html>
