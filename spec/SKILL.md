@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Use when refining domain terminology, writing or reviewing a behavioral specification, or changing terminology or behavior while prototyping or implementing against an existing spec.
+description: Use before any edit to spec/*.md, when refining domain terminology, writing or reviewing a behavioral specification, changing terminology or behavior while prototyping, or implementing against an existing spec.
 ---
 
 # Spec
@@ -13,6 +13,18 @@ examples in `spec/behavior.md`.
 - **Capability:** a coherent thing a caller can accomplish.
 - **Rule:** a guarantee or constraint within a capability.
 - **Example:** concrete preconditions, an action, and its expected outcome.
+
+## Every spec edit needs approval
+
+Before writing to a spec file, show the change in the
+[review format](#review-proposed-changes) and wait for the user to approve it.
+That holds however small the edit or whatever prompted it: syncing the spec with
+code, fixing review findings, or carrying out an agreed design. Approving a code
+change doesn't approve the spec edits that go with it.
+
+If you can't ask the user, as a subagent or delegate, don't edit the spec.
+Return the proposed changes in the [terminal format](references/review-terminal.md)
+so they can be presented for approval.
 
 ## Keep the spec current
 
