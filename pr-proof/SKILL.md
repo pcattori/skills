@@ -33,7 +33,7 @@ correct command, fixture, or check.
 
 Proof must cover the final diff, including follow-up fixes and meaningful
 conflict resolutions. After each fix, recheck the behavior it affects. Renew
-independent review, such as [council](../council/SKILL.md), only when a change
+independent review, such as [consult](../consult/SKILL.md), only when a change
 invalidates the earlier review, not automatically for every small finding.
 
 When you cannot find a way to prove a change, you do not have full confidence.
