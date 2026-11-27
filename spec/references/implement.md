@@ -1,7 +1,7 @@
 # Implement the spec
 
-Use the glossary to shape the domain model and the behavior spec to test what
-callers can observe.
+Use the glossary to shape the domain model, the behavior spec to test what
+callers can observe, and the scope to know what not to build yet.
 
 ## Glossary informs types and schemas
 
@@ -79,3 +79,17 @@ describe("Place an order", () => {
   );
 });
 ```
+
+## Scope informs tests and stopping points
+
+- **Don't build past a limit:** a limit marks behavior that's deliberately
+  absent. Implement it only once the limit is lifted and the behavior is
+  specified.
+
+- **Caller-visible limits → one `Scope` suite:** give each limit with an example
+  its own test, named for the limit. Stubs get no test, so their stand-in
+  behavior never becomes part of the contract.
+
+- **Lift a limit and its test together:** when a limit's entry leaves
+  `spec/scope.md`, delete its test and add tests for the behavior rules that
+  replace it.

@@ -6,13 +6,15 @@ description: Use before any edit to spec/*.md, when refining domain terminology,
 # Spec
 
 Actively refine the domain's language and behavior as you design, prototype, and
-implement. Record terms in `spec/glossary.md` and capabilities, rules, and
-examples in `spec/behavior.md`.
+implement. Record terms in `spec/glossary.md`, capabilities, rules, and examples
+in `spec/behavior.md`, and temporary limits in `spec/scope.md`.
 
 - **Term:** a domain concept with a canonical name and precise meaning.
 - **Capability:** a coherent thing a caller can accomplish.
 - **Rule:** a guarantee or constraint within a capability.
 - **Example:** concrete preconditions, an action, and its expected outcome.
+- **Limit:** a deliberate, temporary gap between the intended contract and what's
+  built.
 
 ## Every spec edit needs approval
 
@@ -134,7 +136,39 @@ rejections beside the rules they enforce.
   Placing an order with no lines fails with an empty-order error.
 ```
 
+### Scope
+
+In `spec/scope.md`, record each decision to defer or stub something for now.
+Behavior describes the contract you intend to keep. Scope describes where the
+current build deliberately falls short of it. A restriction you never expect to
+lift is a behavior rule, not a limit.
+
+Give each limit its own bold bullet. Give caller-visible limits an example, as
+you would a rule. Internal stubs need none. When a clear condition lifts the
+limit, end with an `_Until:_` line naming it. Otherwise, leave it out.
+
+```markdown
+# Scope
+
+- **Only card payments are supported.**
+
+  Placing an order paid by invoice fails with an unsupported-payment-method
+  error.
+
+  _Until:_ invoicing is available.
+
+- **Tax calculation is stubbed.**
+
+  Every order is taxed at 0%.
+
+  _Until:_ the tax service is integrated.
+```
+
+When a limit lifts, remove its entry and propose the behavior rules that replace
+it.
+
 ## Implementation
 
 When implementing against a spec, read [Implement the spec](references/implement.md)
-for how the glossary maps to domain types and schemas and behavior maps to tests.
+for how the glossary maps to domain types and schemas and behavior and scope map
+to tests.

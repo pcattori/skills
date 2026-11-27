@@ -22,4 +22,11 @@
    ```
 
    **Why:** This keeps the gift a surprise while helping with thank-you notes.
+
+**Scope**
+
+4. ```diff
+   + Claims can't be transferred
+     _Until:_ the Transfer a claim capability is specified.
+   ```
 ````
